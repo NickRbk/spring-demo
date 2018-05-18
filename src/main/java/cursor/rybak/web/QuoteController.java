@@ -14,16 +14,17 @@ import java.util.List;
 @RequestMapping("/api")
 public class QuoteController {
 
-    private final QuoteRepository quoteRepository;
+    //private final QuoteRepository quoteRepository;
 
     @Autowired
     public QuoteController(@Qualifier(value = "quote") QuoteRepository quoteRepository) {
-        this.quoteRepository = quoteRepository;
+        //his.quoteRepository = quoteRepository;
     }
 
     @GetMapping
-    public List<String> getQuote() throws SQLException {
-        return quoteRepository.getQuote();
+    public String getQuote() throws SQLException {
+        //return quoteRepository.getQuote();
+        return "HelloWorld";
     }
 
 }
