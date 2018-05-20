@@ -1,6 +1,8 @@
 package cursor.rybak.repository;
 
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -11,15 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository(value = "quote")
+@Repository("quote")
 public class QuoteRepositoryImpl implements QuoteRepository {
 
-    private final DataSource dataSource;
-
+    @Getter
     @Autowired
-    public QuoteRepositoryImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    @Qualifier("psql")
+    private DataSource dataSource;
 
     @Override
     public List<String> getQuote() throws SQLException {

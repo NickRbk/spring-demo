@@ -20,12 +20,13 @@ public class JavaConfig {
     private String password;
 
 
-    @Bean
+    @Bean("psql")
     public DataSource psqlDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setUrl(url);
-        dataSource.setUsername(username);
-        dataSource.setPassword(password);
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://172.17.0.2:5432/postgres");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres");
 
         return dataSource;
     }
