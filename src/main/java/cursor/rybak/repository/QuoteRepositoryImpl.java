@@ -1,6 +1,5 @@
 package cursor.rybak.repository;
 
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
@@ -16,7 +15,6 @@ import java.util.List;
 @Repository("quote")
 public class QuoteRepositoryImpl implements QuoteRepository {
 
-    @Getter
     @Autowired
     @Qualifier("psql")
     private DataSource dataSource;
@@ -32,7 +30,7 @@ public class QuoteRepositoryImpl implements QuoteRepository {
 
         List<String> heroes = new ArrayList<>();
 
-        while(resultSet.next()) {
+        while (resultSet.next()) {
             heroes.add(resultSet.getString(3));
         }
 
