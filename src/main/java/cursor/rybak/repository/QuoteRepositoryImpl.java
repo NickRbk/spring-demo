@@ -37,6 +37,8 @@ public class QuoteRepositoryImpl implements QuoteRepository {
             heroVoice.add(resultSet.getString(1));
         }
 
+        if (heroVoice.size()==0) heroVoice.add("HERO NOT FOUND IN DB! CHOOSE ANOTHER CHARACTER!");
+
         return heroVoice;
     }
 }
