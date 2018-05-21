@@ -21,6 +21,8 @@ INSERT INTO heroes(name, quote) VALUES
 ('hero4', 'voice 4'),
 ('hero5', 'voice 5');
 ```
+- change DB settings in `resources/application.properties`
+
 
 ### How to start:
 1) git clone
