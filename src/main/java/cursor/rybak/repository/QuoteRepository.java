@@ -4,6 +4,5 @@ import java.sql.SQLException;
 import java.util.List;
 
 public interface QuoteRepository {
-
-    List<String> getQuote() throws SQLException;
+    List<String> getHeroQuote(String hero) throws SQLException;
 }

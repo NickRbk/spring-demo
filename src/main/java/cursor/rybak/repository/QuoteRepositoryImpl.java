@@ -1,7 +1,6 @@
 package cursor.rybak.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
@@ -12,28 +11,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository("quote")
+@Repository
 public class QuoteRepositoryImpl implements QuoteRepository {
 
+    private final DataSource dataSource;
+
     @Autowired
-    @Qualifier("psql")
-    private DataSource dataSource;
+    public QuoteRepositoryImpl(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Override
-    public List<String> getQuote() throws SQLException {
+    public List<String> getHeroQuote(String hero) throws SQLException {
 
         Connection connection = dataSource.getConnection();
 
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM heroes");
+        PreparedStatement preparedStatement = connection.prepareStatement("SELECT quote FROM heroes WHERE name='"
+                + hero + "'");
 
         ResultSet resultSet = preparedStatement.executeQuery();
 
-        List<String> heroes = new ArrayList<>();
+        List<String> heroVoice = new ArrayList<>();
 
         while (resultSet.next()) {
-            heroes.add(resultSet.getString(3));
+            heroVoice.add(resultSet.getString(1));
         }
 
-        return heroes;
+        return heroVoice;
     }
 }
