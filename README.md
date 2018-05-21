@@ -37,3 +37,5 @@ To shutdown tomcat use below cmd:
 ```
 {{PATH_TO_TOMCAT}}/apache-tomcat-9.0.8/bin/catalina.sh stop
 ```
+
+[Useful link](http://www.mkyong.com/spring-mvc/spring-3-mvc-and-json-example/#!parentId=1044132)
