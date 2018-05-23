@@ -1,44 +1,43 @@
 package cursor.rybak.repository;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import javax.persistence.Query;
 import java.util.List;
 
 @Repository
+@Transactional
 public class QuoteRepositoryImpl implements QuoteRepository {
 
-    private final DataSource dataSource;
-
     @Autowired
-    public QuoteRepositoryImpl(DataSource dataSource) {
-        this.dataSource = dataSource;
-    }
+    SessionFactory sessionFactory;
 
     @Override
-    public List<String> getHeroQuote(String hero) throws SQLException {
+    public List<String> getHeroQuote(String hero) {
 
-        Connection connection = dataSource.getConnection();
+        Query query = sessionFactory
+                .createEntityManager()
+                .createQuery("SELECT hero from cursor.rybak.model.Hero hero");
 
-        PreparedStatement preparedStatement = connection.prepareStatement("SELECT quote FROM heroes WHERE name='"
-                + hero + "'");
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-
-        List<String> heroVoice = new ArrayList<>();
-
-        while (resultSet.next()) {
-            heroVoice.add(resultSet.getString(1));
-        }
-
-        if (heroVoice.size()==0) heroVoice.add("HERO NOT FOUND IN DB! CHOOSE ANOTHER CHARACTER!");
-
-        return heroVoice;
+        return query.getResultList();
+//        Connection connection = dataSource.getConnection();
+//
+//        PreparedStatement preparedStatement = connection.prepareStatement("SELECT quote FROM heroes WHERE name='"
+//                + hero + "'");
+//
+//        ResultSet resultSet = preparedStatement.executeQuery();
+//
+//        List<String> heroVoice = new ArrayList<>();
+//
+//        while (resultSet.next()) {
+//            heroVoice.add(resultSet.getString(1));
+//        }
+//
+//        if (heroVoice.size()==0) heroVoice.add("HERO NOT FOUND IN DB! CHOOSE ANOTHER CHARACTER!");
+//
+//        return heroVoice;
     }
 }
