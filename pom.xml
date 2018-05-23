@@ -29,6 +29,7 @@
         <lombok.version>1.16.16</lombok.version>
         <jtsl.version>1.2</jtsl.version>
         <jackson-core.version>2.9.5</jackson-core.version>
+        <!--<hibernate.version>5.3.0.CR2</hibernate.version>-->
     </properties>
 
     <dependencies>
@@ -43,6 +44,12 @@
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.hibernate/hibernate-core &ndash;&gt;-->
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate</groupId>-->
+            <!--<artifactId>hibernate-core</artifactId>-->
+            <!--<version>${hibernate.version}</version>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

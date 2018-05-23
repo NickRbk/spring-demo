@@ -20,6 +20,8 @@ public class QuoteController {
         this.quoteRepository = quoteRepository;
     }
 
+
+
     @GetMapping
     public List<String> getQuote(@RequestParam String hero) throws SQLException {
         return quoteRepository.getHeroQuote(hero);
