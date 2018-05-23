@@ -12,15 +12,19 @@ import java.util.List;
 @Transactional
 public class QuoteRepositoryImpl implements QuoteRepository {
 
+    private final SessionFactory sessionFactory;
+
     @Autowired
-    SessionFactory sessionFactory;
+    public QuoteRepositoryImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public List<String> getHeroQuote(String hero) {
 
         Query query = sessionFactory
                 .createEntityManager()
-                .createQuery("SELECT hero from cursor.rybak.model.Hero hero");
+                .createQuery("SELECT hero from Hero hero");
 
         return query.getResultList();
 //        Connection connection = dataSource.getConnection();
