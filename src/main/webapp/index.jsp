@@ -14,5 +14,11 @@
             find voice for hero1
         </a></i>
     </p>
+
+    <p>Or you can fetch all heroes
+        <i><a href="heroes">
+            by this route
+        </a></i>
+    </p>
 </body>
 </html>

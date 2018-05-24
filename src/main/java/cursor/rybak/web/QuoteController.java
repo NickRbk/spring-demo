@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping
 public class QuoteController {
     private final QuoteRepository quoteRepository;
 
@@ -20,8 +20,13 @@ public class QuoteController {
         this.quoteRepository = quoteRepository;
     }
 
-    @GetMapping
-    public List<Hero> getQuote(@RequestParam String hero) {
+    @GetMapping("/heroes")
+    public List<Hero> getHeroes() {
+        return quoteRepository.getHeroes();
+    }
+
+    @GetMapping("/api")
+    public List<Hero> getHeroes(@RequestParam String hero) {
         return quoteRepository.getHeroQuote(hero);
     }
 }

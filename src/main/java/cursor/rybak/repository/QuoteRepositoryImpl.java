@@ -21,12 +21,18 @@ public class QuoteRepositoryImpl implements QuoteRepository {
     }
 
     @Override
-    public List<Hero> getHeroQuote(String hero) {
+    public List<Hero> getHeroes() {
+        Query query = sessionFactory
+                .createEntityManager()
+                .createQuery("SELECT hero.name, hero.quote FROM Hero hero");
+        return query.getResultList();
+    }
 
+    @Override
+    public List<Hero> getHeroQuote(String hero) {
         Query query = sessionFactory
                 .createEntityManager()
                 .createQuery(String.format("SELECT hero.name, hero.quote FROM Hero hero WHERE hero.name='%s'", hero));
-
         return query.getResultList();
     }
 }
