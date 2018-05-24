@@ -10,12 +10,9 @@ import javax.persistence.*;
 @Getter
 @Table(name = "heroes")
 public class Hero {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
     private String name;
-
     private String quote;
 }
