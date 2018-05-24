@@ -1,5 +1,6 @@
 package cursor.rybak.web;
 
+import cursor.rybak.model.Hero;
 import cursor.rybak.repository.QuoteRepository;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class QuoteController {
     }
 
     @GetMapping
-    public List<String> getQuote(@RequestParam String hero) throws SQLException {
+    public List<Hero> getQuote(@RequestParam String hero) {
         return quoteRepository.getHeroQuote(hero);
     }
 }

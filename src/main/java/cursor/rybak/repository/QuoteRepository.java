@@ -1,7 +1,9 @@
 package cursor.rybak.repository;
 
+import cursor.rybak.model.Hero;
+
 import java.util.List;
 
 public interface QuoteRepository {
-    List getHeroQuote(String hero);
+    List<Hero> getHeroQuote(String hero);
 }

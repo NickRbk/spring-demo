@@ -1,5 +1,6 @@
 package cursor.rybak.repository;
 
+import cursor.rybak.model.Hero;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,28 +21,12 @@ public class QuoteRepositoryImpl implements QuoteRepository {
     }
 
     @Override
-    public List<String> getHeroQuote(String hero) {
+    public List<Hero> getHeroQuote(String hero) {
 
         Query query = sessionFactory
                 .createEntityManager()
-                .createQuery("SELECT hero from Hero hero");
+                .createQuery(String.format("SELECT hero.name, hero.quote FROM Hero hero WHERE hero.name='%s'", hero));
 
         return query.getResultList();
-//        Connection connection = dataSource.getConnection();
-//
-//        PreparedStatement preparedStatement = connection.prepareStatement("SELECT quote FROM heroes WHERE name='"
-//                + hero + "'");
-//
-//        ResultSet resultSet = preparedStatement.executeQuery();
-//
-//        List<String> heroVoice = new ArrayList<>();
-//
-//        while (resultSet.next()) {
-//            heroVoice.add(resultSet.getString(1));
-//        }
-//
-//        if (heroVoice.size()==0) heroVoice.add("HERO NOT FOUND IN DB! CHOOSE ANOTHER CHARACTER!");
-//
-//        return heroVoice;
     }
 }
