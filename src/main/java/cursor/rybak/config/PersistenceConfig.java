@@ -59,13 +59,11 @@ public class PersistenceConfig {
     }
 
     private Properties hibernateProperties() {
-        return new Properties() {
-            {
-                setProperty("hibernate.dialect",
-                        env.getProperty("hibernate.dialect"));
-                setProperty("hibernate.globally_quoted_identifiers",
-                        "true");
-            }
-        };
+        Properties hibernateProperties = new Properties();
+
+        hibernateProperties.setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
+        hibernateProperties.setProperty("hibernate.globally_quoted_identifiers", "true");
+
+        return hibernateProperties;
     }
 }
